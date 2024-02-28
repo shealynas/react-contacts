@@ -78,6 +78,14 @@ function App() {
               type="submit"
               onClick={(event) => {
                 event.preventDefault();
+                const newContact = {
+                  firstName,
+                  lastName,
+                  phoneNumber,
+                  email,
+                };
+                const updatedContacts = [...contacts, newContact];
+                setContacts(updatedContacts);
                 console.log("Submit clicked!");
               }}
             >
