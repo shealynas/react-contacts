@@ -13,6 +13,12 @@ function App() {
         <h1>React Contacts</h1>
         <ContactForm
           onFormSubmitionHandler={(newContact) => {
+            const isEmailorPhoneInContacts = contacts.some((contact) => {
+              return (
+                contact.phoneNumber === newContact.phoneNumber ||
+                contact.email === newContact.email
+              );
+            });
             const updatedContacts = [...contacts, newContact];
             setContacts(updatedContacts);
           }}
