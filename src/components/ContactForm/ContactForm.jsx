@@ -68,6 +68,7 @@ export default function ContactForm({ onFormSubmitionHandler }) {
           ]}
           guide={true}
           required
+          pattern="\d{3}-\d{3}-\d{4}"
           className="form-input"
           onChange={(event) => {
             const value = event.target.value;
