@@ -8,11 +8,26 @@ export default function ContactForm({ onFormSubmitionHandler }) {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   return (
-    <form className="form-container">
+    <form
+      className="form-container"
+      onSubmit={(event) => {
+        event.preventDefault();
+        const newContact = {
+          firstName,
+          lastName,
+          phoneNumber,
+          email,
+        };
+        onFormSubmitionHandler(newContact);
+
+        console.log("Submit clicked!");
+      }}
+    >
       <label>
         First Name:
         <input
           type="text"
+          required
           className="form-input"
           onChange={(event) => {
             const value = event.target.value;
@@ -25,6 +40,7 @@ export default function ContactForm({ onFormSubmitionHandler }) {
         Last Name:
         <input
           type="text"
+          required
           className="form-input"
           onChange={(event) => {
             const value = event.target.value;
@@ -51,6 +67,7 @@ export default function ContactForm({ onFormSubmitionHandler }) {
             /\d/,
           ]}
           guide={true}
+          required
           className="form-input"
           onChange={(event) => {
             const value = event.target.value;
@@ -63,29 +80,14 @@ export default function ContactForm({ onFormSubmitionHandler }) {
         Email Address:{" "}
         <input
           type="email"
+          required
           className="form-input"
-          pattern=".+@example\.com"
           onChange={(event) => {
             const value = event.target.value;
             setEmail(value);
           }}
         ></input>
-        <button
-          className="form-button"
-          type="submit"
-          onClick={(event) => {
-            event.preventDefault();
-            const newContact = {
-              firstName,
-              lastName,
-              phoneNumber,
-              email,
-            };
-            onFormSubmitionHandler(newContact);
-
-            console.log("Submit clicked!");
-          }}
-        >
+        <button className="form-button" type="submit">
           Create Contact
         </button>
       </label>
